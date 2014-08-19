@@ -1,5 +1,5 @@
 module VLFeat
 
-# package code goes here
+include("libvl/LIBVL.jl")
 
 end # module

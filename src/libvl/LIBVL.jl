@@ -1,0 +1,11 @@
+include("libvl_h.jl")
+
+include("covdet.jl")
+include("dsift.jl")
+include("hikmeans.jl")
+include("hog.jl")
+include("host.jl")
+include("ikmeans.jl")
+include("mser.jl")
+include("sift.jl")
+include("svm.jl")
