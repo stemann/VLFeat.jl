@@ -13,7 +13,7 @@ export
     vl_homogeneouskernelmap_get_window_type
 
 
-function vl_homogeneouskernelmap_new(kernelType::VlHomogeneousKernelType,gamma::Cdouble,order::vl_size,period::Cdouble,windowType::VlHomogeneousKernelMapWindowType)
+function vl_homogeneouskernelmap_new(kernelType::VlHomogeneousKernelType,gamma::Cdouble,order::Integer,period::Cdouble,windowType::VlHomogeneousKernelMapWindowType)
     ccall((:vl_homogeneouskernelmap_new,libvl),Ptr{VlHomogeneousKernelMap},(VlHomogeneousKernelType,Cdouble,vl_size,Cdouble,VlHomogeneousKernelMapWindowType),kernelType,gamma,order,period,windowType)
 end
 
@@ -21,11 +21,11 @@ function vl_homogeneouskernelmap_delete(self)
     ccall((:vl_homogeneouskernelmap_delete,libvl),Void,(Ptr{VlHomogeneousKernelMap},),self)
 end
 
-function vl_homogeneouskernelmap_evaluate_d(self,destination,stride::vl_size,x::Cdouble)
+function vl_homogeneouskernelmap_evaluate_d(self,destination,stride::Integer,x::Cdouble)
     ccall((:vl_homogeneouskernelmap_evaluate_d,libvl),Void,(Ptr{VlHomogeneousKernelMap},Ptr{Cdouble},vl_size,Cdouble),self,destination,stride,x)
 end
 
-function vl_homogeneouskernelmap_evaluate_f(self,destination,stride::vl_size,x::Cdouble)
+function vl_homogeneouskernelmap_evaluate_f(self,destination,stride::Integer,x::Cdouble)
     ccall((:vl_homogeneouskernelmap_evaluate_f,libvl),Void,(Ptr{VlHomogeneousKernelMap},Ptr{Cfloat},vl_size,Cdouble),self,destination,stride,x)
 end
 

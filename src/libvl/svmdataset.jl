@@ -16,7 +16,7 @@ export
     vl_svmdataset_get_homogeneous_kernel_map
 
 
-function vl_svmdataset_new(dataType::vl_type,data,dimension::vl_size,numData::vl_size)
+function vl_svmdataset_new(dataType::vl_type,data,dimension::Integer,numData::Integer)
     ccall((:vl_svmdataset_new,libvl),Ptr{VlSvmDataset},(vl_type,Ptr{Void},vl_size,vl_size),dataType,data,dimension,numData)
 end
 

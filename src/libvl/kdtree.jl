@@ -24,7 +24,7 @@ export
     vl_kdforest_get_searcher
 
 
-function vl_kdforest_new(dataType::vl_type,dimension::vl_size,numTrees::vl_size,normType::VlVectorComparisonType)
+function vl_kdforest_new(dataType::vl_type,dimension::Integer,numTrees::Integer,normType::VlVectorComparisonType)
     ccall((:vl_kdforest_new,libvl),Ptr{VlKDForest},(vl_type,vl_size,vl_size,VlVectorComparisonType),dataType,dimension,numTrees,normType)
 end
 
@@ -40,19 +40,19 @@ function vl_kdforestsearcher_delete(searcher)
     ccall((:vl_kdforestsearcher_delete,libvl),Void,(Ptr{VlKDForestSearcher},),searcher)
 end
 
-function vl_kdforest_build(self,numData::vl_size,data)
+function vl_kdforest_build(self,numData::Integer,data)
     ccall((:vl_kdforest_build,libvl),Void,(Ptr{VlKDForest},vl_size,Ptr{Void}),self,numData,data)
 end
 
-function vl_kdforest_query(self,neighbors,numNeighbors::vl_size,query)
+function vl_kdforest_query(self,neighbors,numNeighbors::Integer,query)
     ccall((:vl_kdforest_query,libvl),vl_size,(Ptr{VlKDForest},Ptr{VlKDForestNeighbor},vl_size,Ptr{Void}),self,neighbors,numNeighbors,query)
 end
 
-function vl_kdforest_query_with_array(self,index,numNeighbors::vl_size,numQueries::vl_size,distance,queries)
+function vl_kdforest_query_with_array(self,index,numNeighbors::Integer,numQueries::Integer,distance,queries)
     ccall((:vl_kdforest_query_with_array,libvl),vl_size,(Ptr{VlKDForest},Ptr{vl_uint32},vl_size,vl_size,Ptr{Void},Ptr{Void}),self,index,numNeighbors,numQueries,distance,queries)
 end
 
-function vl_kdforestsearcher_query(self,neighbors,numNeighbors::vl_size,query)
+function vl_kdforestsearcher_query(self,neighbors,numNeighbors::Integer,query)
     ccall((:vl_kdforestsearcher_query,libvl),vl_size,(Ptr{VlKDForestSearcher},Ptr{VlKDForestNeighbor},vl_size,Ptr{Void}),self,neighbors,numNeighbors,query)
 end
 
@@ -76,7 +76,7 @@ function vl_kdforest_get_data_type(self)
     ccall((:vl_kdforest_get_data_type,libvl),vl_type,(Ptr{VlKDForest},),self)
 end
 
-function vl_kdforest_set_max_num_comparisons(self,n::vl_size)
+function vl_kdforest_set_max_num_comparisons(self,n::Integer)
     ccall((:vl_kdforest_set_max_num_comparisons,libvl),Void,(Ptr{VlKDForest},vl_size),self,n)
 end
 

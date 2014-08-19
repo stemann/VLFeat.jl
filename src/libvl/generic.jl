@@ -48,7 +48,7 @@ function vl_configuration_to_string_copy()
     ccall((:vl_configuration_to_string_copy,libvl),Ptr{Uint8},())
 end
 
-function vl_set_simd_enabled(x::vl_bool)
+function vl_set_simd_enabled(x::Integer)
     ccall((:vl_set_simd_enabled,libvl),Void,(vl_bool,),x)
 end
 
@@ -80,7 +80,7 @@ function vl_get_max_threads()
     ccall((:vl_get_max_threads,libvl),vl_size,())
 end
 
-function vl_set_num_threads(n::vl_size)
+function vl_set_num_threads(n::Integer)
     ccall((:vl_set_num_threads,libvl),Void,(vl_size,),n)
 end
 

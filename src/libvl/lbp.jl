@@ -9,7 +9,7 @@ export
     vl_lbp_get_dimension
 
 
-function vl_lbp_new(_type::VlLbpMappingType,transposed::vl_bool)
+function vl_lbp_new(_type::VlLbpMappingType,transposed::Integer)
     ccall((:vl_lbp_new,libvl),Ptr{VlLbp},(VlLbpMappingType,vl_bool),_type,transposed)
 end
 
@@ -17,7 +17,7 @@ function vl_lbp_delete(self)
     ccall((:vl_lbp_delete,libvl),Void,(Ptr{VlLbp},),self)
 end
 
-function vl_lbp_process(self,features,image,width::vl_size,height::vl_size,cellSize::vl_size)
+function vl_lbp_process(self,features,image,width::Integer,height::Integer,cellSize::Integer)
     ccall((:vl_lbp_process,libvl),Void,(Ptr{VlLbp},Ptr{Cfloat},Ptr{Cfloat},vl_size,vl_size,vl_size),self,features,image,width,height,cellSize)
 end
 

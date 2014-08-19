@@ -40,35 +40,35 @@ function vl_array_get_num_elements(self)
     ccall((:vl_array_get_num_elements,libvl),vl_size,(Ptr{VlArray},),self)
 end
 
-function vl_array_init(self,_type::vl_type,numDimension::vl_size,dimensions)
+function vl_array_init(self,_type::vl_type,numDimension::Integer,dimensions)
     ccall((:vl_array_init,libvl),Ptr{VlArray},(Ptr{VlArray},vl_type,vl_size,Ptr{vl_size}),self,_type,numDimension,dimensions)
 end
 
-function vl_array_init_envelope(self,data,_type::vl_type,numDimension::vl_size,dimensions)
+function vl_array_init_envelope(self,data,_type::vl_type,numDimension::Integer,dimensions)
     ccall((:vl_array_init_envelope,libvl),Ptr{VlArray},(Ptr{VlArray},Ptr{Void},vl_type,vl_size,Ptr{vl_size}),self,data,_type,numDimension,dimensions)
 end
 
-function vl_array_init_matrix(self,_type::vl_type,numRows::vl_size,numColumns::vl_size)
+function vl_array_init_matrix(self,_type::vl_type,numRows::Integer,numColumns::Integer)
     ccall((:vl_array_init_matrix,libvl),Ptr{VlArray},(Ptr{VlArray},vl_type,vl_size,vl_size),self,_type,numRows,numColumns)
 end
 
-function vl_array_init_matrix_envelope(self,data,_type::vl_type,numRows::vl_size,numColumns::vl_size)
+function vl_array_init_matrix_envelope(self,data,_type::vl_type,numRows::Integer,numColumns::Integer)
     ccall((:vl_array_init_matrix_envelope,libvl),Ptr{VlArray},(Ptr{VlArray},Ptr{Void},vl_type,vl_size,vl_size),self,data,_type,numRows,numColumns)
 end
 
-function vl_array_new(_type::vl_type,numDimension::vl_size,dimensions)
+function vl_array_new(_type::vl_type,numDimension::Integer,dimensions)
     ccall((:vl_array_new,libvl),Ptr{VlArray},(vl_type,vl_size,Ptr{vl_size}),_type,numDimension,dimensions)
 end
 
-function vl_array_new_envelope(data,_type::vl_type,numDimension::vl_size,dimensions)
+function vl_array_new_envelope(data,_type::vl_type,numDimension::Integer,dimensions)
     ccall((:vl_array_new_envelope,libvl),Ptr{VlArray},(Ptr{Void},vl_type,vl_size,Ptr{vl_size}),data,_type,numDimension,dimensions)
 end
 
-function vl_array_new_matrix(_type::vl_type,numRows::vl_size,numColumns::vl_size)
+function vl_array_new_matrix(_type::vl_type,numRows::Integer,numColumns::Integer)
     ccall((:vl_array_new_matrix,libvl),Ptr{VlArray},(vl_type,vl_size,vl_size),_type,numRows,numColumns)
 end
 
-function vl_array_new_matrix_envelope(data,_type::vl_type,numRows::vl_size,numColumns::vl_size)
+function vl_array_new_matrix_envelope(data,_type::vl_type,numRows::Integer,numColumns::Integer)
     ccall((:vl_array_new_matrix_envelope,libvl),Ptr{VlArray},(Ptr{Void},vl_type,vl_size,vl_size),data,_type,numRows,numColumns)
 end
 

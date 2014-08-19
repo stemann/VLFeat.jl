@@ -15,11 +15,11 @@ export
     vl_liopdesc_process
 
 
-function vl_liopdesc_new(numNeighbours::vl_int,numSpatialBins::vl_int,radius::Cfloat,sideLength::vl_size)
+function vl_liopdesc_new(numNeighbours::vl_int,numSpatialBins::vl_int,radius::Cfloat,sideLength::Integer)
     ccall((:vl_liopdesc_new,libvl),Ptr{VlLiopDesc},(vl_int,vl_int,Cfloat,vl_size),numNeighbours,numSpatialBins,radius,sideLength)
 end
 
-function vl_liopdesc_new_basic(sideLength::vl_size)
+function vl_liopdesc_new_basic(sideLength::Integer)
     ccall((:vl_liopdesc_new_basic,libvl),Ptr{VlLiopDesc},(vl_size,),sideLength)
 end
 

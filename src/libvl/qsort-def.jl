@@ -21,6 +21,6 @@ function VL_QSORT_prefix_sort_recursive(array,_begin::vl_uindex,_end::vl_uindex)
     ccall((:VL_QSORT_prefix_sort_recursive,libvl),Void,(Ptr{Cint},vl_uindex,vl_uindex),array,_begin,_end)
 end
 
-function VL_QSORT_prefix_sort(array,size::vl_size)
+function VL_QSORT_prefix_sort(array,size::Integer)
     ccall((:VL_QSORT_prefix_sort,libvl),Void,(Ptr{Cint},vl_size),array,size)
 end

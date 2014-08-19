@@ -35,7 +35,7 @@ function VL_HEAP_prefix_swap(array,indexA::vl_uindex,indexB::vl_uindex)
     ccall((:VL_HEAP_prefix_swap,libvl),Void,(Ptr{Cint},vl_uindex,vl_uindex),array,indexA,indexB)
 end
 
-function VL_HEAP_prefix_up(array,heapSize::vl_size,index::vl_uindex)
+function VL_HEAP_prefix_up(array,heapSize::Integer,index::vl_uindex)
     ccall((:VL_HEAP_prefix_up,libvl),Void,(Ptr{Cint},vl_size,vl_uindex),array,heapSize,index)
 end
 
@@ -51,6 +51,6 @@ function VL_HEAP_prefix_pop(array,heapSize)
     ccall((:VL_HEAP_prefix_pop,libvl),vl_uindex,(Ptr{Cint},Ptr{vl_size}),array,heapSize)
 end
 
-function VL_HEAP_prefix_update(array,heapSize::vl_size,index::vl_uindex)
+function VL_HEAP_prefix_update(array,heapSize::Integer,index::vl_uindex)
     ccall((:VL_HEAP_prefix_update,libvl),Void,(Ptr{Cint},vl_size,vl_uindex),array,heapSize,index)
 end

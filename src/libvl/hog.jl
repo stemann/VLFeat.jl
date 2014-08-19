@@ -19,7 +19,7 @@ export
     vl_hog_set_use_bilinear_orientation_assignments
 
 
-function vl_hog_new(variant::VlHogVariant,numOrientations::vl_size,transposed::vl_bool)
+function vl_hog_new(variant::VlHogVariant,numOrientations::Integer,transposed::Integer)
     ccall((:vl_hog_new,libvl),Ptr{VlHog},(VlHogVariant,vl_size,vl_bool),variant,numOrientations,transposed)
 end
 
@@ -27,15 +27,15 @@ function vl_hog_delete(self)
     ccall((:vl_hog_delete,libvl),Void,(Ptr{VlHog},),self)
 end
 
-function vl_hog_process(self,features,image,width::vl_size,height::vl_size,numChannels::vl_size,cellSize::vl_size)
+function vl_hog_process(self,features,image,width::Integer,height::Integer,numChannels::Integer,cellSize::Integer)
     ccall((:vl_hog_process,libvl),Void,(Ptr{VlHog},Ptr{Cfloat},Ptr{Cfloat},vl_size,vl_size,vl_size,vl_size),self,features,image,width,height,numChannels,cellSize)
 end
 
-function vl_hog_put_image(self,image,width::vl_size,height::vl_size,numChannels::vl_size,cellSize::vl_size)
+function vl_hog_put_image(self,image,width::Integer,height::Integer,numChannels::Integer,cellSize::Integer)
     ccall((:vl_hog_put_image,libvl),Void,(Ptr{VlHog},Ptr{Cfloat},vl_size,vl_size,vl_size,vl_size),self,image,width,height,numChannels,cellSize)
 end
 
-function vl_hog_put_polar_field(self,modulus,angle,directed::vl_bool,width::vl_size,height::vl_size,cellSize::vl_size)
+function vl_hog_put_polar_field(self,modulus,angle,directed::Integer,width::Integer,height::Integer,cellSize::Integer)
     ccall((:vl_hog_put_polar_field,libvl),Void,(Ptr{VlHog},Ptr{Cfloat},Ptr{Cfloat},vl_bool,vl_size,vl_size,vl_size),self,modulus,angle,directed,width,height,cellSize)
 end
 
@@ -51,7 +51,7 @@ function vl_hog_get_width(self)
     ccall((:vl_hog_get_width,libvl),vl_size,(Ptr{VlHog},),self)
 end
 
-function vl_hog_render(self,image,features,width::vl_size,height::vl_size)
+function vl_hog_render(self,image,features,width::Integer,height::Integer)
     ccall((:vl_hog_render,libvl),Void,(Ptr{VlHog},Ptr{Cfloat},Ptr{Cfloat},vl_size,vl_size),self,image,features,width,height)
 end
 
@@ -71,6 +71,6 @@ function vl_hog_get_use_bilinear_orientation_assignments(self)
     ccall((:vl_hog_get_use_bilinear_orientation_assignments,libvl),vl_bool,(Ptr{VlHog},),self)
 end
 
-function vl_hog_set_use_bilinear_orientation_assignments(self,x::vl_bool)
+function vl_hog_set_use_bilinear_orientation_assignments(self,x::Integer)
     ccall((:vl_hog_set_use_bilinear_orientation_assignments,libvl),Void,(Ptr{VlHog},vl_bool),self,x)
 end

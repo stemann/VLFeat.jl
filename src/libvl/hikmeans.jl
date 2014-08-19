@@ -58,14 +58,14 @@ function vl_hikm_set_max_niters(f,max_niters::Integer)
     ccall((:vl_hikm_set_max_niters,libvl),Void,(Ptr{VlHIKMTree},Cint),f,max_niters)
 end
 
-function vl_hikm_init(f,M::vl_size,K::vl_size,depth::vl_size)
+function vl_hikm_init(f,M::Integer,K::Integer,depth::Integer)
     ccall((:vl_hikm_init,libvl),Void,(Ptr{VlHIKMTree},vl_size,vl_size,vl_size),f,M,K,depth)
 end
 
-function vl_hikm_train(f,data,N::vl_size)
+function vl_hikm_train(f,data,N::Integer)
     ccall((:vl_hikm_train,libvl),Void,(Ptr{VlHIKMTree},Ptr{vl_uint8},vl_size),f,data,N)
 end
 
-function vl_hikm_push(f,asgn,data,N::vl_size)
+function vl_hikm_push(f,asgn,data,N::Integer)
     ccall((:vl_hikm_push,libvl),Void,(Ptr{VlHIKMTree},Ptr{vl_uint32},Ptr{vl_uint8},vl_size),f,asgn,data,N)
 end

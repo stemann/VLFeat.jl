@@ -72,7 +72,7 @@ function vl_dsift_set_geometry(self,geom)
     ccall((:vl_dsift_set_geometry,libvl),Void,(Ptr{VlDsiftFilter},Ptr{VlDsiftDescriptorGeometry}),self,geom)
 end
 
-function vl_dsift_set_flat_window(self,useFlatWindow::vl_bool)
+function vl_dsift_set_flat_window(self,useFlatWindow::Integer)
     ccall((:vl_dsift_set_flat_window,libvl),Void,(Ptr{VlDsiftFilter},vl_bool),self,useFlatWindow)
 end
 
@@ -164,7 +164,7 @@ function vl_dsift_set_geometry(self,geom)
     ccall((:vl_dsift_set_geometry,libvl),Void,(Ptr{VlDsiftFilter},Ptr{VlDsiftDescriptorGeometry}),self,geom)
 end
 
-function vl_dsift_set_flat_window(self,useFlatWindow::vl_bool)
+function vl_dsift_set_flat_window(self,useFlatWindow::Integer)
     ccall((:vl_dsift_set_flat_window,libvl),Void,(Ptr{VlDsiftFilter},vl_bool),self,useFlatWindow)
 end
 

@@ -28,27 +28,27 @@ function vl_ikm_delete(f)
     ccall((:vl_ikm_delete,libvl),Void,(Ptr{VlIKMFilt},),f)
 end
 
-function vl_ikm_init(f,centers,M::vl_size,K::vl_size)
+function vl_ikm_init(f,centers,M::Integer,K::Integer)
     ccall((:vl_ikm_init,libvl),Void,(Ptr{VlIKMFilt},Ptr{vl_ikmacc_t},vl_size,vl_size),f,centers,M,K)
 end
 
-function vl_ikm_init_rand(f,M::vl_size,K::vl_size)
+function vl_ikm_init_rand(f,M::Integer,K::Integer)
     ccall((:vl_ikm_init_rand,libvl),Void,(Ptr{VlIKMFilt},vl_size,vl_size),f,M,K)
 end
 
-function vl_ikm_init_rand_data(f,data,M::vl_size,N::vl_size,K::vl_size)
+function vl_ikm_init_rand_data(f,data,M::Integer,N::Integer,K::Integer)
     ccall((:vl_ikm_init_rand_data,libvl),Void,(Ptr{VlIKMFilt},Ptr{vl_uint8},vl_size,vl_size,vl_size),f,data,M,N,K)
 end
 
-function vl_ikm_train(f,data,N::vl_size)
+function vl_ikm_train(f,data,N::Integer)
     ccall((:vl_ikm_train,libvl),Cint,(Ptr{VlIKMFilt},Ptr{vl_uint8},vl_size),f,data,N)
 end
 
-function vl_ikm_push(f,asgn,data,N::vl_size)
+function vl_ikm_push(f,asgn,data,N::Integer)
     ccall((:vl_ikm_push,libvl),Void,(Ptr{VlIKMFilt},Ptr{vl_uint32},Ptr{vl_uint8},vl_size),f,asgn,data,N)
 end
 
-function vl_ikm_push_one(centers,data,M::vl_size,K::vl_size)
+function vl_ikm_push_one(centers,data,M::Integer,K::Integer)
     ccall((:vl_ikm_push_one,libvl),vl_uint,(Ptr{vl_ikmacc_t},Ptr{vl_uint8},vl_size,vl_size),centers,data,M,K)
 end
 
@@ -76,6 +76,6 @@ function vl_ikm_set_verbosity(f,verb::Integer)
     ccall((:vl_ikm_set_verbosity,libvl),Void,(Ptr{VlIKMFilt},Cint),f,verb)
 end
 
-function vl_ikm_set_max_niters(f,max_niters::vl_size)
+function vl_ikm_set_max_niters(f,max_niters::Integer)
     ccall((:vl_ikm_set_max_niters,libvl),Void,(Ptr{VlIKMFilt},vl_size),f,max_niters)
 end

@@ -17,11 +17,11 @@ export
     vl_enumeration_get_by_value
 
 
-function vl_string_copy(destination,destinationSize::vl_size,source)
+function vl_string_copy(destination,destinationSize::Integer,source)
     ccall((:vl_string_copy,libvl),vl_size,(Ptr{Uint8},vl_size,Ptr{Uint8}),destination,destinationSize,source)
 end
 
-function vl_string_copy_sub(destination,destinationSize::vl_size,beginning,_end)
+function vl_string_copy_sub(destination,destinationSize::Integer,beginning,_end)
     ccall((:vl_string_copy_sub,libvl),vl_size,(Ptr{Uint8},vl_size,Ptr{Uint8},Ptr{Uint8}),destination,destinationSize,beginning,_end)
 end
 
@@ -33,11 +33,11 @@ function vl_string_protocol_name(prot::Integer)
     ccall((:vl_string_protocol_name,libvl),Ptr{Uint8},(Cint,),prot)
 end
 
-function vl_string_basename(destination,destinationSize::vl_size,source,maxNumStrippedExtension::vl_size)
+function vl_string_basename(destination,destinationSize::Integer,source,maxNumStrippedExtension::Integer)
     ccall((:vl_string_basename,libvl),vl_size,(Ptr{Uint8},vl_size,Ptr{Uint8},vl_size),destination,destinationSize,source,maxNumStrippedExtension)
 end
 
-function vl_string_replace_wildcard(destination,destinationSize::vl_size,src,wildcardChar::Uint8,escapeChar::Uint8,replacement)
+function vl_string_replace_wildcard(destination,destinationSize::Integer,src,wildcardChar::Uint8,escapeChar::Uint8,replacement)
     ccall((:vl_string_replace_wildcard,libvl),vl_size,(Ptr{Uint8},vl_size,Ptr{Uint8},Uint8,Uint8,Ptr{Uint8}),destination,destinationSize,src,wildcardChar,escapeChar,replacement)
 end
 

@@ -47,7 +47,7 @@ function vl_get_frame_size(frameType::VlFrameType)
     ccall((:vl_get_frame_size,libvl),vl_size,(VlFrameType,),frameType)
 end
 
-function vl_get_frame_type(affineAdaptation::vl_bool,orientation::vl_bool)
+function vl_get_frame_type(affineAdaptation::Integer,orientation::Integer)
     ccall((:vl_get_frame_type,libvl),VlFrameType,(vl_bool,vl_bool),affineAdaptation,orientation)
 end
 
@@ -63,7 +63,7 @@ function vl_covdet_reset(self)
     ccall((:vl_covdet_reset,libvl),Void,(Ptr{VlCovDet},),self)
 end
 
-function vl_covdet_put_image(self,image,width::vl_size,height::vl_size)
+function vl_covdet_put_image(self,image,width::Integer,height::Integer)
     ccall((:vl_covdet_put_image,libvl),Cint,(Ptr{VlCovDet},Ptr{Cfloat},vl_size,vl_size),self,image,width,height)
 end
 
@@ -99,7 +99,7 @@ function vl_covdet_extract_affine_shape_for_frame(self,adapted,frame::VlFrameOri
     ccall((:vl_covdet_extract_affine_shape_for_frame,libvl),Cint,(Ptr{VlCovDet},Ptr{VlFrameOrientedEllipse},VlFrameOrientedEllipse),self,adapted,frame)
 end
 
-function vl_covdet_extract_patch_for_frame(self,patch,resolution::vl_size,extent::Cdouble,sigma::Cdouble,frame::VlFrameOrientedEllipse)
+function vl_covdet_extract_patch_for_frame(self,patch,resolution::Integer,extent::Cdouble,sigma::Cdouble,frame::VlFrameOrientedEllipse)
     ccall((:vl_covdet_extract_patch_for_frame,libvl),vl_bool,(Ptr{VlCovDet},Ptr{Cfloat},vl_size,Cdouble,Cdouble,VlFrameOrientedEllipse),self,patch,resolution,extent,sigma,frame)
 end
 
@@ -167,7 +167,7 @@ function vl_covdet_set_first_octave(self,o::vl_index)
     ccall((:vl_covdet_set_first_octave,libvl),Void,(Ptr{VlCovDet},vl_index),self,o)
 end
 
-function vl_covdet_set_octave_resolution(self,r::vl_size)
+function vl_covdet_set_octave_resolution(self,r::Integer)
     ccall((:vl_covdet_set_octave_resolution,libvl),Void,(Ptr{VlCovDet},vl_size),self,r)
 end
 
@@ -183,11 +183,11 @@ function vl_covdet_set_laplacian_peak_threshold(self,peakThreshold::Cdouble)
     ccall((:vl_covdet_set_laplacian_peak_threshold,libvl),Void,(Ptr{VlCovDet},Cdouble),self,peakThreshold)
 end
 
-function vl_covdet_set_transposed(self,t::vl_bool)
+function vl_covdet_set_transposed(self,t::Integer)
     ccall((:vl_covdet_set_transposed,libvl),Void,(Ptr{VlCovDet},vl_bool),self,t)
 end
 
-function vl_covdet_set_aa_accurate_smoothing(self,x::vl_bool)
+function vl_covdet_set_aa_accurate_smoothing(self,x::Integer)
     ccall((:vl_covdet_set_aa_accurate_smoothing,libvl),Void,(Ptr{VlCovDet},vl_bool),self,x)
 end
 

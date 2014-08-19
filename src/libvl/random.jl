@@ -34,7 +34,7 @@ function vl_rand_seed(self,s::vl_uint32)
     ccall((:vl_rand_seed,libvl),Void,(Ptr{VlRand},vl_uint32),self,s)
 end
 
-function vl_rand_seed_by_array(self,key,keySize::vl_size)
+function vl_rand_seed_by_array(self,key,keySize::Integer)
     ccall((:vl_rand_seed_by_array,libvl),Void,(Ptr{VlRand},Ptr{vl_uint32},vl_size),self,key,keySize)
 end
 
@@ -74,7 +74,7 @@ function vl_rand_uindex(self,range::vl_uindex)
     ccall((:vl_rand_uindex,libvl),vl_uindex,(Ptr{VlRand},vl_uindex),self,range)
 end
 
-function vl_rand_permute_indexes(self,array,size::vl_size)
+function vl_rand_permute_indexes(self,array,size::Integer)
     ccall((:vl_rand_permute_indexes,libvl),Void,(Ptr{VlRand},Ptr{vl_index},vl_size),self,array,size)
 end
 

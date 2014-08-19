@@ -22,11 +22,11 @@ function vl_scalespacegeometry_is_equal(a::VlScaleSpaceGeometry,b::VlScaleSpaceG
     ccall((:vl_scalespacegeometry_is_equal,libvl),vl_bool,(VlScaleSpaceGeometry,VlScaleSpaceGeometry),a,b)
 end
 
-function vl_scalespace_get_default_geometry(width::vl_size,height::vl_size)
+function vl_scalespace_get_default_geometry(width::Integer,height::Integer)
     ccall((:vl_scalespace_get_default_geometry,libvl),VlScaleSpaceGeometry,(vl_size,vl_size),width,height)
 end
 
-function vl_scalespace_new(width::vl_size,height::vl_size)
+function vl_scalespace_new(width::Integer,height::Integer)
     ccall((:vl_scalespace_new,libvl),Ptr{VlScaleSpace},(vl_size,vl_size),width,height)
 end
 

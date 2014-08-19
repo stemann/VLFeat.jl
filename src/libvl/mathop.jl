@@ -197,11 +197,11 @@ function vl_get_vector_3_comparison_function_d(_type::VlVectorComparisonType)
     ccall((:vl_get_vector_3_comparison_function_d,libvl),VlDoubleVector3ComparisonFunction,(VlVectorComparisonType,),_type)
 end
 
-function vl_eval_vector_comparison_on_all_pairs_f(result,dimension::vl_size,X,numDataX::vl_size,Y,numDataY::vl_size,_function::VlFloatVectorComparisonFunction)
+function vl_eval_vector_comparison_on_all_pairs_f(result,dimension::Integer,X,numDataX::Integer,Y,numDataY::Integer,_function::VlFloatVectorComparisonFunction)
     ccall((:vl_eval_vector_comparison_on_all_pairs_f,libvl),Void,(Ptr{Cfloat},vl_size,Ptr{Cfloat},vl_size,Ptr{Cfloat},vl_size,VlFloatVectorComparisonFunction),result,dimension,X,numDataX,Y,numDataY,_function)
 end
 
-function vl_eval_vector_comparison_on_all_pairs_d(result,dimension::vl_size,X,numDataX::vl_size,Y,numDataY::vl_size,_function::VlDoubleVectorComparisonFunction)
+function vl_eval_vector_comparison_on_all_pairs_d(result,dimension::Integer,X,numDataX::Integer,Y,numDataY::Integer,_function::VlDoubleVectorComparisonFunction)
     ccall((:vl_eval_vector_comparison_on_all_pairs_d,libvl),Void,(Ptr{Cdouble},vl_size,Ptr{Cdouble},vl_size,Ptr{Cdouble},vl_size,VlDoubleVectorComparisonFunction),result,dimension,X,numDataX,Y,numDataY,_function)
 end
 
@@ -221,6 +221,6 @@ function vl_solve_linear_system_2(x,A,b)
     ccall((:vl_solve_linear_system_2,libvl),Cint,(Ptr{Cdouble},Ptr{Cdouble},Ptr{Cdouble}),x,A,b)
 end
 
-function vl_gaussian_elimination(A,numRows::vl_size,numColumns::vl_size)
+function vl_gaussian_elimination(A,numRows::Integer,numColumns::Integer)
     ccall((:vl_gaussian_elimination,libvl),Cint,(Ptr{Cdouble},vl_size,vl_size),A,numRows,numColumns)
 end

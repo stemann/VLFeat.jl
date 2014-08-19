@@ -61,7 +61,7 @@ export
     vl_svm_logistic_dca_update
 
 
-function vl_svm_new(_type::VlSvmSolverType,data,dimension::vl_size,numData::vl_size,labels,lambda::Cdouble)
+function vl_svm_new(_type::VlSvmSolverType,data,dimension::Integer,numData::Integer,labels,lambda::Cdouble)
     ccall((:vl_svm_new,libvl),Ptr{VlSvm},(VlSvmSolverType,Ptr{Cdouble},vl_size,vl_size,Ptr{Cdouble},Cdouble),_type,data,dimension,numData,labels,lambda)
 end
 
@@ -69,7 +69,7 @@ function vl_svm_new_with_dataset(_type::VlSvmSolverType,dataset,labels,lambda::C
     ccall((:vl_svm_new_with_dataset,libvl),Ptr{VlSvm},(VlSvmSolverType,Ptr{VlSvmDataset},Ptr{Cdouble},Cdouble),_type,dataset,labels,lambda)
 end
 
-function vl_svm_new_with_abstract_data(_type::VlSvmSolverType,data,dimension::vl_size,numData::vl_size,labels,lambda::Cdouble)
+function vl_svm_new_with_abstract_data(_type::VlSvmSolverType,data,dimension::Integer,numData::Integer,labels,lambda::Cdouble)
     ccall((:vl_svm_new_with_abstract_data,libvl),Ptr{VlSvm},(VlSvmSolverType,Ptr{Void},vl_size,vl_size,Ptr{Cdouble},Cdouble),_type,data,dimension,numData,labels,lambda)
 end
 
@@ -145,11 +145,11 @@ function vl_svm_set_bias_learning_rate(self,rate::Cdouble)
     ccall((:vl_svm_set_bias_learning_rate,libvl),Void,(Ptr{VlSvm},Cdouble),self,rate)
 end
 
-function vl_svm_set_max_num_iterations(self,maxNumIterations::vl_size)
+function vl_svm_set_max_num_iterations(self,maxNumIterations::Integer)
     ccall((:vl_svm_set_max_num_iterations,libvl),Void,(Ptr{VlSvm},vl_size),self,maxNumIterations)
 end
 
-function vl_svm_set_diagnostic_frequency(self,f::vl_size)
+function vl_svm_set_diagnostic_frequency(self,f::Integer)
     ccall((:vl_svm_set_diagnostic_frequency,libvl),Void,(Ptr{VlSvm},vl_size),self,f)
 end
 

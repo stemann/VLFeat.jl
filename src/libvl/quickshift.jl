@@ -70,7 +70,7 @@ function vl_quickshift_set_kernel_size(f,sigma::vl_qs_type)
     ccall((:vl_quickshift_set_kernel_size,libvl),Void,(Ptr{VlQS},vl_qs_type),f,sigma)
 end
 
-function vl_quickshift_set_medoid(f,medoid::vl_bool)
+function vl_quickshift_set_medoid(f,medoid::Integer)
     ccall((:vl_quickshift_set_medoid,libvl),Void,(Ptr{VlQS},vl_bool),f,medoid)
 end
 
@@ -106,6 +106,6 @@ function vl_quickshift_set_max_dist(q,tau::vl_qs_type)
     ccall((:vl_quickshift_set_max_dist,libvl),Void,(Ptr{VlQS},vl_qs_type),q,tau)
 end
 
-function vl_quickshift_set_medoid(q,medoid::vl_bool)
+function vl_quickshift_set_medoid(q,medoid::Integer)
     ccall((:vl_quickshift_set_medoid,libvl),Void,(Ptr{VlQS},vl_bool),q,medoid)
 end

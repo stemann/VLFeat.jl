@@ -1,5 +1,5 @@
 
-import wrap_c
+import Clang.wrap_c
 import DataStructures: DefaultDict
 import Base.Meta.isexpr
 using Match
@@ -118,7 +118,7 @@ function rewrite_fn(e, call, body, use_strpack=false)
             Expr(:(::), [sym, Expr(:curly, [:Ptr, _], _)], _) => push!(parms, sym)
 
             # Type all integers as Integer
-            Expr(:(::), [sym, (:Uint32 || :Cuint || :Int32 || :Cint)], _) => (sym; push!(parms, :($sym::Integer)))
+            Expr(:(::), [sym, (:Uint32 || :Cuint || :Int32 || :Cint || :Uint64 || :Int64 || :vl_size || :vl_bool)], _) => (sym; push!(parms, :($sym::Integer)))
 
             # Everything else is unchanged
             _ => push!(parms, call_arg)

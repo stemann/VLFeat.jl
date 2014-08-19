@@ -41,7 +41,7 @@ export
     vl_gmm_get_covariance_lower_bounds
 
 
-function vl_gmm_new(dataType::vl_type,dimension::vl_size,numComponents::vl_size)
+function vl_gmm_new(dataType::vl_type,dimension::Integer,numComponents::Integer)
     ccall((:vl_gmm_new,libvl),Ptr{VlGMM},(vl_type,vl_size,vl_size),dataType,dimension,numComponents)
 end
 
@@ -57,19 +57,19 @@ function vl_gmm_reset(self)
     ccall((:vl_gmm_reset,libvl),Void,(Ptr{VlGMM},),self)
 end
 
-function vl_gmm_cluster(self,data,numData::vl_size)
+function vl_gmm_cluster(self,data,numData::Integer)
     ccall((:vl_gmm_cluster,libvl),Cdouble,(Ptr{VlGMM},Ptr{Void},vl_size),self,data,numData)
 end
 
-function vl_gmm_init_with_rand_data(self,data,numData::vl_size)
+function vl_gmm_init_with_rand_data(self,data,numData::Integer)
     ccall((:vl_gmm_init_with_rand_data,libvl),Void,(Ptr{VlGMM},Ptr{Void},vl_size),self,data,numData)
 end
 
-function vl_gmm_init_with_kmeans(self,data,numData::vl_size,kmeansInit)
+function vl_gmm_init_with_kmeans(self,data,numData::Integer,kmeansInit)
     ccall((:vl_gmm_init_with_kmeans,libvl),Void,(Ptr{VlGMM},Ptr{Void},vl_size,Ptr{VlKMeans}),self,data,numData,kmeansInit)
 end
 
-function vl_gmm_em(self,data,numData::vl_size)
+function vl_gmm_em(self,data,numData::Integer)
     ccall((:vl_gmm_em,libvl),Cdouble,(Ptr{VlGMM},Ptr{Void},vl_size),self,data,numData)
 end
 
@@ -85,19 +85,19 @@ function vl_gmm_set_priors(self,priors)
     ccall((:vl_gmm_set_priors,libvl),Void,(Ptr{VlGMM},Ptr{Void}),self,priors)
 end
 
-function vl_get_gmm_data_posteriors_f(posteriors,numClusters::vl_size,numData::vl_size,priors,means,dimension::vl_size,covariances,data)
+function vl_get_gmm_data_posteriors_f(posteriors,numClusters::Integer,numData::Integer,priors,means,dimension::Integer,covariances,data)
     ccall((:vl_get_gmm_data_posteriors_f,libvl),Cdouble,(Ptr{Cfloat},vl_size,vl_size,Ptr{Cfloat},Ptr{Cfloat},vl_size,Ptr{Cfloat},Ptr{Cfloat}),posteriors,numClusters,numData,priors,means,dimension,covariances,data)
 end
 
-function vl_get_gmm_data_posteriors_d(posteriors,numClusters::vl_size,numData::vl_size,priors,means,dimension::vl_size,covariances,data)
+function vl_get_gmm_data_posteriors_d(posteriors,numClusters::Integer,numData::Integer,priors,means,dimension::Integer,covariances,data)
     ccall((:vl_get_gmm_data_posteriors_d,libvl),Cdouble,(Ptr{Cdouble},vl_size,vl_size,Ptr{Cdouble},Ptr{Cdouble},vl_size,Ptr{Cdouble},Ptr{Cdouble}),posteriors,numClusters,numData,priors,means,dimension,covariances,data)
 end
 
-function vl_gmm_set_num_repetitions(self,numRepetitions::vl_size)
+function vl_gmm_set_num_repetitions(self,numRepetitions::Integer)
     ccall((:vl_gmm_set_num_repetitions,libvl),Void,(Ptr{VlGMM},vl_size),self,numRepetitions)
 end
 
-function vl_gmm_set_max_num_iterations(self,maxNumIterations::vl_size)
+function vl_gmm_set_max_num_iterations(self,maxNumIterations::Integer)
     ccall((:vl_gmm_set_max_num_iterations,libvl),Void,(Ptr{VlGMM},vl_size),self,maxNumIterations)
 end
 
