@@ -140,6 +140,7 @@ export
     VlKMeansInitialization,
     VlKMeansRandomSelection,
     VlKMeansPlusPlus,
+    VlFloatVectorComparisonFunction,
     VlDoubleVectorComparisonFunction,
     _VlKMeans,
     VlKMeans,
@@ -199,6 +200,8 @@ export
     VlFrameEllipse,
     _VlFrameOrientedEllipse,
     VlFrameOrientedEllipse,
+    _VlCovDetFeature,
+    VlCovDetFeature,
     _VlCovDetFeatureOrientation,
     VlCovDetFeatureOrientation,
     _VlCovDetFeatureLaplacianScale,
@@ -231,10 +234,14 @@ export
     VL_FISHER_FLAG_NORMALIZED,
     VL_FISHER_FLAG_IMPROVED,
     VL_FISHER_FLAG_FAST,
-    no_argument,
-    required_argument,
-    optional_argument,
-    option,
+    _VlGMMInitialization,
+    VlGMMKMeans,
+    VlGMMRand,
+    VlGMMCustom,
+    VlGMMInitialization,
+    VlGMMKMeans,
+    VlGMMRand,
+    VlGMMCustom,
     _VlGMM,
     VlGMM,
     VL_HEAP_array,
@@ -1321,6 +1328,7 @@ const VlKMeansRandomSelection = (uint32)(0)
 const VlKMeansPlusPlus = (uint32)(1)
 # end enum VlKMeansInitialization
 
+typealias VlFloatVectorComparisonFunction Ptr{Void}
 typealias VlDoubleVectorComparisonFunction Ptr{Void}
 
 type _VlKMeans
@@ -1339,7 +1347,7 @@ type _VlKMeans
     centers::Ptr{Void}
     centerDistances::Ptr{Void}
     energy::Cdouble
-    floatVectorComparisonFn::Cint
+    floatVectorComparisonFn::VlFloatVectorComparisonFunction
     doubleVectorComparisonFn::VlDoubleVectorComparisonFunction
 end
 
@@ -1359,7 +1367,7 @@ type VlKMeans
     centers::Ptr{Void}
     centerDistances::Ptr{Void}
     energy::Cdouble
-    floatVectorComparisonFn::Cint
+    floatVectorComparisonFn::VlFloatVectorComparisonFunction
     doubleVectorComparisonFn::VlDoubleVectorComparisonFunction
 end
 
@@ -1607,6 +1615,22 @@ type VlFrameOrientedEllipse
     a22::Cfloat
 end
 
+type _VlCovDetFeature
+    frame::VlFrameOrientedEllipse
+    peakScore::Cfloat
+    edgeScore::Cfloat
+    orientationScore::Cfloat
+    laplacianScaleScore::Cfloat
+end
+
+type VlCovDetFeature
+    frame::VlFrameOrientedEllipse
+    peakScore::Cfloat
+    edgeScore::Cfloat
+    orientationScore::Cfloat
+    laplacianScaleScore::Cfloat
+end
+
 type _VlCovDetFeatureOrientation
     angle::Cdouble
     score::Cdouble
@@ -1734,16 +1758,20 @@ const VL_FISHER_FLAG_SQUARE_ROOT = 0x01 << 0
 const VL_FISHER_FLAG_NORMALIZED = 0x01 << 1
 const VL_FISHER_FLAG_IMPROVED = VL_FISHER_FLAG_NORMALIZED | VL_FISHER_FLAG_SQUARE_ROOT
 const VL_FISHER_FLAG_FAST = 0x01 << 2
-const no_argument = 0
-const required_argument = 1
-const optional_argument = 2
 
-type option
-    name::Ptr{Uint8}
-    has_arg::Cint
-    flag::Ptr{Cint}
-    val::Cint
-end
+# begin enum _VlGMMInitialization
+typealias _VlGMMInitialization Uint32
+const VlGMMKMeans = (uint32)(0)
+const VlGMMRand = (uint32)(1)
+const VlGMMCustom = (uint32)(2)
+# end enum _VlGMMInitialization
+
+# begin enum VlGMMInitialization
+typealias VlGMMInitialization Uint32
+const VlGMMKMeans = (uint32)(0)
+const VlGMMRand = (uint32)(1)
+const VlGMMCustom = (uint32)(2)
+# end enum VlGMMInitialization
 
 typealias _VlGMM Void
 typealias VlGMM Void

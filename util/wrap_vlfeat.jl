@@ -1,5 +1,5 @@
 
-import Clang.wrap_c
+import wrap_c
 import DataStructures: DefaultDict
 import Base.Meta.isexpr
 using Match
@@ -23,7 +23,7 @@ hpaths = [root]
 
 ignore_header = DefaultDict(ASCIIString, Bool, false)
 
-for i in ["aib.jl", "array.jl", "fisher.jl", "generic.jl", "getopt_long.jl", "gmm.jl", "heap-def.jl", "homkermap.jl", "imopv.jl", "imopv_sse2.jl", "kdtree.jl", "kmeans.jl", "lbp.jl", "liop.jl", "mathop_avx.jl", "mathop.jl", "mathop_sse2.jl", "pgm.jl", "qsort-def.jl", "quickshift.jl", "random.jl", "rodrigues.jl", "scalespace.jl", "shuffle-def.jl", "slic.jl", "stringop.jl", "svmdataset.jl", "vlad.jl" ]
+for i in ["getopt_long.h", "imopv_sse2.h", "mathop_sse2.h"]
     ignore_header[i] = true
 end
 
