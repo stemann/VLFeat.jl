@@ -1,4 +1,5 @@
 using BinDeps
+using Compat
 
 @BinDeps.setup
 
@@ -17,11 +18,11 @@ provides(BuildProcess,
 		GetSources(libvl)
 		@build_steps begin
 			FileRule(joinpath(usr, "lib", "libvl."*shlib_ext), @build_steps begin
-				MakeTargets(src, ["all"]; env = Dict("MEX" => ""))
+				MakeTargets(src, ["all"]; env = @compat Dict("MEX" => ""))
 				CreateDirectory(libdir(libvl))
 				`cp -a $src/bin/$arch/libvl.$shlib_ext $usr/lib`
 			end)
 		end
 	end), libvl, os = :Unix)
 
-@BinDeps.install Dict(:libvl => :libvl)
+@BinDeps.install @compat Dict(:libvl => :libvl)
