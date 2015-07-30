@@ -13,5 +13,6 @@ export vl_hog
 
 include("libvl/LIBVL.jl")
 include("hog.jl")
+include("sift.jl")
 
 end # module
