@@ -1,5 +1,6 @@
 module VLFeat
 using Images
+using Colors
 using BinDeps
 
 depsfile = Pkg.dir("VLFeat","deps","deps.jl")

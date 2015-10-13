@@ -15,7 +15,7 @@ function vl_sift(img::AbstractImageDirect;
   if floatDescriptors
     descriptors = Array(Float32, 128, 0)
   else
-    descriptors = Array(Uint8, 128, 0)
+    descriptors = Array(UInt8, 128, 0)
   end
 
   filterPtr = vl_sift_new(height(img), width(img), octaves, levels, firstOctave)
@@ -103,7 +103,7 @@ function transpose_descriptor(dst::Array, src::Array)
       op = BO * i + BP*BO * jp
       dst[op + 1] = src[o + 1]
       for t = 1:BO-1
-        dst[BO - t + op + 1] = src [t + o + 1]
+        dst[BO - t + op + 1] = src[t + o + 1]
       end
     end
   end
