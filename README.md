@@ -1,10 +1,19 @@
 # VLFeat.jl
 
+Julia wrapper for the [VLFeat](http://www.vlfeat.org) library.
+
+## Status
+
+### Release
+
+[![VLFeat](http://pkg.julialang.org/badges/VLFeat_0.4.svg)](http://pkg.julialang.org/?pkg=VLFeat)
+[![VLFeat](http://pkg.julialang.org/badges/VLFeat_0.3.svg)](http://pkg.julialang.org/?pkg=VLFeat)
+
+### Master
+
 Linux, OS X | Windows
 ----------- | -------
 [![Build Status](https://travis-ci.org/IHPostal/VLFeat.jl.svg?branch=master)](https://travis-ci.org/IHPostal/VLFeat.jl) | [![Build status](https://ci.appveyor.com/api/projects/status/29bm43b2e54c2b86/branch/master?svg=true)](https://ci.appveyor.com/project/stemann/vlfeat-jl/branch/master)
-
-Julia wrapper for the [VLFeat](http://www.vlfeat.org) library.
 
 ## Installation
 Using the Julia package manager,
