@@ -14,7 +14,7 @@ src = joinpath(srcdir(libvl), "vlfeat-$version")
 usr = usrdir(libvl)
 shlib_ext = BinDeps.shlib_ext
 
-archDict = Dict(
+archDict = @compat Dict(
 	(:Linux, 32) => "glnx86",
 	(:Linux, 64) => "glnxa64",
 	(:Darwin, 32) => "maci",
