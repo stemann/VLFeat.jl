@@ -46,5 +46,8 @@ provides(BuildProcess,
 		end
 	end),libvl, os = :Windows)
 
+@windows_only push!(BinDeps.defaults, BuildProcess)
 
 @BinDeps.install @compat Dict(:libvl => :libvl)
+
+@windows_only pop!(BinDeps.defaults)
