@@ -3,7 +3,7 @@ using Images
 using Colors
 using BinDeps
 
-depsfile = Pkg.dir("VLFeat","deps","deps.jl")
+depsfile = joinpath(dirname(@__FILE__),"..","deps","deps.jl")
 if isfile(depsfile)
     include(depsfile)
 else
