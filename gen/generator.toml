@@ -1,0 +1,9 @@
+[general]
+library_name = "libvl"
+output_file_path = "../src/Wrapper.jl"
+module_name = "Wrapper"
+jll_pkg_name = "VLFeat_jll"
+export_symbol_prefixes = ["VL_", "vl_", "Vl"]
+
+[codegen.macro]
+macro_mode = "disable"
