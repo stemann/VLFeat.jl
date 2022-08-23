@@ -1,5 +1,5 @@
 
-function vl_hog{N}(img::AbstractImageDirect{Float32,N}, hogVariant=VlHogVariantDalalTriggs, num_orientations=8)
+function vl_hog(img::AbstractArray{Float32,N}, hogVariant=VlHogVariantDalalTriggs, num_orientations=8) where {N}
     @assert colordim(img) == 1
 
     hog = vl_hog_new(hogVariant, num_orientations, isyfirst(img))
@@ -7,7 +7,7 @@ function vl_hog{N}(img::AbstractImageDirect{Float32,N}, hogVariant=VlHogVariantD
     hogWidth = vl_hog_get_width(hog) ;
     hogHeight = vl_hog_get_height(hog) ;
     hogDimension = vl_hog_get_dimension(hog) ;
-    hogArray = Array(Float32, (int(hogWidth), int(hogHeight), int(hogDimension)))
+    hogArray = Array{Float32, 3}(int(hogWidth), int(hogHeight), int(hogDimension))
     vl_hog_extract(hog, data(hogArray))
     vl_hog_delete(hog)
 
@@ -19,7 +19,7 @@ function vl_hog{N}(img::AbstractImageDirect{Float32,N}, hogVariant=VlHogVariantD
     out
 end
 
-function vl_hog(img::AbstractImageDirect, args...)
+function vl_hog(img::AbstractArray, args...)
     scalei = scaleminmax(Float32, img, 0.0f0, 1.0f0)
     vl_hog(scale(scalei, img), args...)
 end

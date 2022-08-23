@@ -1,18 +1,13 @@
 module VLFeat
-using Images
-using Colors
-using BinDeps
 
-depsfile = joinpath(dirname(@__FILE__),"..","deps","deps.jl")
-if isfile(depsfile)
-    include(depsfile)
-else
-    error("VLFeat not properly installed. Please run Pkg.build(\"VLFeat\")")
-end
+using ColorTypes
+using FixedPointNumbers
 
 export vl_hog
 
-include("libvl/LIBVL.jl")
+include("Wrapper.jl")
+using .Wrapper
+
 include("hog.jl")
 include("sift.jl")
 
