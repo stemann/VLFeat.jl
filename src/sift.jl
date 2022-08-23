@@ -1,4 +1,4 @@
-function vl_sift(img::AbstractImageDirect;
+function vl_sift(img::AbstractArray{Gray{N0f8}, 2};
                  verbose = false,
                  octaves = -1, # Maximum possible
                  levels = 3,
@@ -9,16 +9,16 @@ function vl_sift(img::AbstractImageDirect;
                  magnif = -1.0,
                  windowSize = -1.0,
                  floatDescriptors = false)
-  imgData = data(float32(convert(Array, convert(Image{Gray}, img))))
+  imgData = Float32.(img)
 
-  frames = Array(Float64, 4, 0)
+  frames = Array{Float64}(undef, 4, 0)
   if floatDescriptors
-    descriptors = Array(Float32, 128, 0)
+    descriptors = Array{Float32}(undef, 128, 0)
   else
-    descriptors = Array(UInt8, 128, 0)
+    descriptors = Array{UInt8}(undef, 128, 0)
   end
 
-  filterPtr = vl_sift_new(height(img), width(img), octaves, levels, firstOctave)
+  filterPtr = vl_sift_new(size(img, 1), size(img, 2), octaves, levels, firstOctave)
   filter = unsafe_load(filterPtr)
   if peakThreshold >= 0 filter.peak_thresh = peakThreshold end
   if edgeThreshold >= 0 filter.edge_thresh = edgeThreshold end
@@ -63,15 +63,15 @@ function vl_sift(img::AbstractImageDirect;
     for i = 1:filter.nkeys
       keypoint = unsafe_load(filter.keys, i)
       keypointPtr = filter.keys + (i-1)*sizeof(VlSiftKeypoint)
-      orientations = Array(Float64, 4)
+      orientations = Array{Float64}(undef, 4)
       norientations = vl_sift_calc_keypoint_orientations(filterPtr, orientations, keypointPtr)
       # Process each orientation
       for q = 1:norientations
         # Compute descriptor (if necessary)
         # if nout > 1
-        rdescriptor = Array(vl_sift_pix, 128, 1)
+        rdescriptor = Array{vl_sift_pix}(undef, 128, 1)
         vl_sift_calc_keypoint_descriptor(filterPtr, rdescriptor, keypointPtr, orientations[q])
-        descriptor = Array(vl_sift_pix, 128, 1)
+        descriptor = Array{vl_sift_pix}(undef, 128, 1)
         transpose_descriptor(descriptor, rdescriptor)
         # end
         frame = [keypoint.y+1; keypoint.x+1; keypoint.sigma; pi/2-orientations[q]]

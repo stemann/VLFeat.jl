@@ -1,7 +1,5 @@
-using VLFeat
-using Base.Test
+using Test
 
-# write your own tests here
-@test 1 == 1
-
-include("sift.jl")
+@testset "VLFeat" begin
+    include("sift_tests.jl")
+end
