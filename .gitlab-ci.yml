@@ -1,0 +1,13 @@
+include:
+  - project: ihp/julia/julia-gitlab-ci-templates
+    ref: v1.3.3
+    file: /templates.gitlab-ci.yaml
+
+test:
+  stage: test
+  parallel:
+    matrix:
+      - CI_JULIA_VERSION: ["1.6", "1.7", "1.8"]
+  extends:
+    - .julia.setup
+    - .julia.test
