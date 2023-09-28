@@ -5,7 +5,7 @@ using VLFeat
 @testset "vl_sift on cameraman image" begin
   cameraman_image = TestImages.testimage("cameraman")
   @testset "without float descriptors" begin
-    (f,d) = VLFeat.vl_sift(cameraman_image)
+    (f,d) = VLFeat.vl_sift(cameraman_image; float_descriptors=false)
     @testset "Dimensions of features and descriptors" begin
       @test size(f,1) == 4
       @test size(d,1) == 128
@@ -16,7 +16,7 @@ using VLFeat
     end
   end
   @testset "with float descriptors" begin
-    (f,d) = VLFeat.vl_sift(cameraman_image; floatDescriptors=true)
+    (f,d) = VLFeat.vl_sift(cameraman_image; float_descriptors=true)
     @testset "Dimensions of features and descriptors" begin
       @test size(f,1) == 4
       @test size(d,1) == 128
