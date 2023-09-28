@@ -1347,24 +1347,24 @@ function vl_swap_host_big_endianness_2(dst, src)
     return ccall((:vl_swap_host_big_endianness_2, libvl), Cvoid, (Ptr{Cvoid}, Ptr{Cvoid}), dst, src)
 end
 
-struct var"##Ctag#546"
+struct var"##Ctag#526"
     data::NTuple{32, UInt8}
 end
 
-function Base.getproperty(x::Ptr{var"##Ctag#546"}, f::Symbol)
+function Base.getproperty(x::Ptr{var"##Ctag#526"}, f::Symbol)
     f === :string && return Ptr{NTuple{32, Cchar}}(x + 0)
     f === :words && return Ptr{NTuple{8, vl_uint32}}(x + 0)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::var"##Ctag#546", f::Symbol)
-    r = Ref{var"##Ctag#546"}(x)
-    ptr = Base.unsafe_convert(Ptr{var"##Ctag#546"}, r)
+function Base.getproperty(x::var"##Ctag#526", f::Symbol)
+    r = Ref{var"##Ctag#526"}(x)
+    ptr = Base.unsafe_convert(Ptr{var"##Ctag#526"}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{var"##Ctag#546"}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{var"##Ctag#526"}, f::Symbol, v)
     return unsafe_store!(getproperty(x, f), v)
 end
 
@@ -1373,7 +1373,7 @@ struct _VlX86CpuInfo
 end
 
 function Base.getproperty(x::Ptr{_VlX86CpuInfo}, f::Symbol)
-    f === :vendor && return Ptr{var"##Ctag#546"}(x + 0)
+    f === :vendor && return Ptr{var"##Ctag#526"}(x + 0)
     f === :hasAVX && return Ptr{vl_bool}(x + 32)
     f === :hasSSE42 && return Ptr{vl_bool}(x + 36)
     f === :hasSSE41 && return Ptr{vl_bool}(x + 40)
@@ -2281,87 +2281,87 @@ function vl_liopdesc_process(liop, desc, patch)
     return ccall((:vl_liopdesc_process, libvl), Cvoid, (Ptr{VlLiopDesc}, Ptr{Cfloat}, Ptr{Cfloat}), liop, desc, patch)
 end
 
-struct var"##Ctag#447"
+struct var"##Ctag#427"
     data::NTuple{4, UInt8}
 end
 
-function Base.getproperty(x::Ptr{var"##Ctag#447"}, f::Symbol)
+function Base.getproperty(x::Ptr{var"##Ctag#427"}, f::Symbol)
     f === :raw && return Ptr{vl_uint32}(x + 0)
     f === :value && return Ptr{Cfloat}(x + 0)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::var"##Ctag#447", f::Symbol)
-    r = Ref{var"##Ctag#447"}(x)
-    ptr = Base.unsafe_convert(Ptr{var"##Ctag#447"}, r)
+function Base.getproperty(x::var"##Ctag#427", f::Symbol)
+    r = Ref{var"##Ctag#427"}(x)
+    ptr = Base.unsafe_convert(Ptr{var"##Ctag#427"}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{var"##Ctag#447"}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{var"##Ctag#427"}, f::Symbol, v)
     return unsafe_store!(getproperty(x, f), v)
 end
 
-struct var"##Ctag#448"
+struct var"##Ctag#428"
     data::NTuple{4, UInt8}
 end
 
-function Base.getproperty(x::Ptr{var"##Ctag#448"}, f::Symbol)
+function Base.getproperty(x::Ptr{var"##Ctag#428"}, f::Symbol)
     f === :raw && return Ptr{vl_uint32}(x + 0)
     f === :value && return Ptr{Cfloat}(x + 0)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::var"##Ctag#448", f::Symbol)
-    r = Ref{var"##Ctag#448"}(x)
-    ptr = Base.unsafe_convert(Ptr{var"##Ctag#448"}, r)
+function Base.getproperty(x::var"##Ctag#428", f::Symbol)
+    r = Ref{var"##Ctag#428"}(x)
+    ptr = Base.unsafe_convert(Ptr{var"##Ctag#428"}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{var"##Ctag#448"}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{var"##Ctag#428"}, f::Symbol, v)
     return unsafe_store!(getproperty(x, f), v)
 end
 
-struct var"##Ctag#449"
+struct var"##Ctag#429"
     data::NTuple{8, UInt8}
 end
 
-function Base.getproperty(x::Ptr{var"##Ctag#449"}, f::Symbol)
+function Base.getproperty(x::Ptr{var"##Ctag#429"}, f::Symbol)
     f === :raw && return Ptr{vl_uint64}(x + 0)
     f === :value && return Ptr{Cdouble}(x + 0)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::var"##Ctag#449", f::Symbol)
-    r = Ref{var"##Ctag#449"}(x)
-    ptr = Base.unsafe_convert(Ptr{var"##Ctag#449"}, r)
+function Base.getproperty(x::var"##Ctag#429", f::Symbol)
+    r = Ref{var"##Ctag#429"}(x)
+    ptr = Base.unsafe_convert(Ptr{var"##Ctag#429"}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{var"##Ctag#449"}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{var"##Ctag#429"}, f::Symbol, v)
     return unsafe_store!(getproperty(x, f), v)
 end
 
-struct var"##Ctag#450"
+struct var"##Ctag#430"
     data::NTuple{8, UInt8}
 end
 
-function Base.getproperty(x::Ptr{var"##Ctag#450"}, f::Symbol)
+function Base.getproperty(x::Ptr{var"##Ctag#430"}, f::Symbol)
     f === :raw && return Ptr{vl_uint64}(x + 0)
     f === :value && return Ptr{Cdouble}(x + 0)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::var"##Ctag#450", f::Symbol)
-    r = Ref{var"##Ctag#450"}(x)
-    ptr = Base.unsafe_convert(Ptr{var"##Ctag#450"}, r)
+function Base.getproperty(x::var"##Ctag#430", f::Symbol)
+    r = Ref{var"##Ctag#430"}(x)
+    ptr = Base.unsafe_convert(Ptr{var"##Ctag#430"}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{var"##Ctag#450"}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{var"##Ctag#430"}, f::Symbol, v)
     return unsafe_store!(getproperty(x, f), v)
 end
 
@@ -3308,7 +3308,7 @@ function vl_slic_segment(segmentation, image, width, height, numChannels, region
     )
 end
 
-@cenum var"##Ctag#521"::Int32 begin
+@cenum var"##Ctag#501"::Int32 begin
     VL_PROT_UNKNOWN = -1
     VL_PROT_NONE = 0
     VL_PROT_ASCII = 1
