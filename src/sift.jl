@@ -27,21 +27,21 @@ function vl_sift(img::AbstractArray{Gray{N0f8}, 2};
   if windowSize    >= 0 filter.windowSize = windowSize end
   unsafe_store!(filterPtr, filter)
   if verbose
-    println("vl_sift: filter settings:")
-    println("vl_sift:   octaves      (O)      = $(filter.O)")
-    println("vl_sift:   levels       (S)      = $(filter.S)")
-    println("vl_sift:   first octave (o_min)  = $(filter.o_min)")
-    println("vl_sift:   edge thresh           = $(filter.edge_thresh)")
-    println("vl_sift:   peak thresh           = $(filter.peak_thresh)")
-    println("vl_sift:   norm thresh           = $(filter.norm_thresh)")
-    println("vl_sift:   magnif                = $(filter.magnif)")
-    println("vl_sift:   window size           = $(filter.windowSize)")
+    @debug "vl_sift: filter settings:"
+    @debug "vl_sift:   octaves      (O)      = $(filter.O)"
+    @debug "vl_sift:   levels       (S)      = $(filter.S)"
+    @debug "vl_sift:   first octave (o_min)  = $(filter.o_min)"
+    @debug "vl_sift:   edge thresh           = $(filter.edge_thresh)"
+    @debug "vl_sift:   peak thresh           = $(filter.peak_thresh)"
+    @debug "vl_sift:   norm thresh           = $(filter.norm_thresh)"
+    @debug "vl_sift:   magnif                = $(filter.magnif)"
+    @debug "vl_sift:   window size           = $(filter.windowSize)"
   end
   # Process each octave
   noctaves = filter.O
   for o = filter.o_min:filter.O-1
     if verbose
-      println("vl_sift: processing octave $o");
+      @debug "vl_sift: processing octave $o"
     end
     if o == filter.o_min
       err = vl_sift_process_first_octave(filterPtr, pointer(imgData))
@@ -52,12 +52,12 @@ function vl_sift(img::AbstractArray{Gray{N0f8}, 2};
       break
     end
     if verbose
-      println("vl_sift: GSS octave $(unsafe_load(filterPtr).o_cur) computed");
+      @debug "vl_sift: GSS octave $(unsafe_load(filterPtr).o_cur) computed"
     end
     vl_sift_detect(filterPtr)
     filter = unsafe_load(filterPtr)
     if verbose
-      println("vl_sift: detected $(filter.nkeys) (unoriented) keypoints")
+      @debug "vl_sift: detected $(filter.nkeys) (unoriented) keypoints"
     end
     # Process each keypoint
     for i = 1:filter.nkeys
@@ -86,7 +86,7 @@ function vl_sift(img::AbstractArray{Gray{N0f8}, 2};
   end
   vl_sift_delete(filterPtr)
   if verbose
-    println("vl_sift: found $(size(frames,2)) keypoints")
+    @debug "vl_sift: found $(size(frames,2)) keypoints"
   end
   (frames, descriptors)
 end
