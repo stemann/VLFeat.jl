@@ -78,8 +78,7 @@ function vl_sift(img::AbstractArray{Gray{N0f8}, 2};
         frames = [frames frame]
         descriptor = 512.0*descriptor
         if !floatDescriptors
-          descriptor[descriptor .> 255] = 255.0
-          descriptor = uint8(descriptor)
+          descriptor = round.(UInt8, clamp.(descriptor, 0.0, 255.0))
         end
         descriptors = [descriptors descriptor]
       end
