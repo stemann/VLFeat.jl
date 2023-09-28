@@ -7,7 +7,7 @@ using CEnum
 
 const vl_uint = Cuint
 
-struct _VlAIB
+mutable struct _VlAIB
     nodes::Ptr{vl_uint}
     nentries::vl_uint
     beta::Ptr{Cdouble}
@@ -22,6 +22,7 @@ struct _VlAIB
     parents::Ptr{vl_uint}
     costs::Ptr{Cdouble}
     verbosity::vl_uint
+    _VlAIB() = new()
 end
 
 const VlAIB = _VlAIB
@@ -64,7 +65,7 @@ const vl_uint64 = Culonglong
 
 const vl_size = vl_uint64
 
-struct _VlArray
+mutable struct _VlArray
     type::vl_type
     isEnvelope::vl_bool
     isSparse::vl_bool
@@ -73,6 +74,7 @@ struct _VlArray
     data::Ptr{Cvoid}
     rowPointers::Ptr{Cvoid}
     columnPointers::Ptr{Cvoid}
+    _VlArray() = new()
 end
 
 const VlArray = _VlArray
@@ -171,29 +173,32 @@ end
 
 const VlFrameType = _VlFrameType
 
-struct _VlFrameDisc
+mutable struct _VlFrameDisc
     x::Cfloat
     y::Cfloat
     sigma::Cfloat
+    _VlFrameDisc() = new()
 end
 
 const VlFrameDisc = _VlFrameDisc
 
-struct _VlFrameOrientedDisc
+mutable struct _VlFrameOrientedDisc
     x::Cfloat
     y::Cfloat
     sigma::Cfloat
     angle::Cfloat
+    _VlFrameOrientedDisc() = new()
 end
 
 const VlFrameOrientedDisc = _VlFrameOrientedDisc
 
-struct _VlFrameEllipse
+mutable struct _VlFrameEllipse
     x::Cfloat
     y::Cfloat
     e11::Cfloat
     e12::Cfloat
     e22::Cfloat
+    _VlFrameEllipse() = new()
 end
 
 const VlFrameEllipse = _VlFrameEllipse
@@ -217,26 +222,29 @@ function vl_get_frame_type(affineAdaptation, orientation)
     return ccall((:vl_get_frame_type, libvl), VlFrameType, (vl_bool, vl_bool), affineAdaptation, orientation)
 end
 
-struct _VlCovDetFeature
+mutable struct _VlCovDetFeature
     frame::VlFrameOrientedEllipse
     peakScore::Cfloat
     edgeScore::Cfloat
     orientationScore::Cfloat
     laplacianScaleScore::Cfloat
+    _VlCovDetFeature() = new()
 end
 
 const VlCovDetFeature = _VlCovDetFeature
 
-struct _VlCovDetFeatureOrientation
+mutable struct _VlCovDetFeatureOrientation
     angle::Cdouble
     score::Cdouble
+    _VlCovDetFeatureOrientation() = new()
 end
 
 const VlCovDetFeatureOrientation = _VlCovDetFeatureOrientation
 
-struct _VlCovDetFeatureLaplacianScale
+mutable struct _VlCovDetFeatureLaplacianScale
     scale::Cdouble
     score::Cdouble
+    _VlCovDetFeatureLaplacianScale() = new()
 end
 
 const VlCovDetFeatureLaplacianScale = _VlCovDetFeatureLaplacianScale
@@ -491,7 +499,7 @@ end
 
 const VlDsiftDescriptorGeometry = VlDsiftDescriptorGeometry_
 
-struct VlDsiftFilter_
+mutable struct VlDsiftFilter_
     imWidth::Cint
     imHeight::Cint
     stepX::Cint
@@ -513,6 +521,7 @@ struct VlDsiftFilter_
     grads::Ptr{Ptr{Cfloat}}
     convTmp1::Ptr{Cfloat}
     convTmp2::Ptr{Cfloat}
+    VlDsiftFilter_() = new()
 end
 
 const VlDsiftFilter = VlDsiftFilter_
@@ -831,7 +840,7 @@ const VlFloatVectorComparisonFunction = Ptr{Cvoid}
 # typedef double ( * VlDoubleVectorComparisonFunction ) ( vl_size dimension , double const * X , double const * Y )
 const VlDoubleVectorComparisonFunction = Ptr{Cvoid}
 
-struct _VlKMeans
+mutable struct _VlKMeans
     dataType::vl_type
     dimension::vl_size
     numCenters::vl_size
@@ -849,6 +858,7 @@ struct _VlKMeans
     energy::Cdouble
     floatVectorComparisonFn::VlFloatVectorComparisonFunction
     doubleVectorComparisonFn::VlDoubleVectorComparisonFunction
+    _VlKMeans() = new()
 end
 
 const VlKMeans = _VlKMeans
@@ -1064,7 +1074,7 @@ end
 
 const VlHIKMNode = _VlHIKMNode
 
-struct _VlHIKMTree
+mutable struct _VlHIKMTree
     M::vl_size
     K::vl_size
     depth::vl_size
@@ -1072,6 +1082,7 @@ struct _VlHIKMTree
     method::Cint
     verb::Cint
     root::Ptr{VlHIKMNode}
+    _VlHIKMTree() = new()
 end
 
 const VlHIKMTree = _VlHIKMTree
@@ -1137,7 +1148,7 @@ end
 
 const VlHogVariant = VlHogVariant_
 
-struct VlHog_
+mutable struct VlHog_
     variant::VlHogVariant
     dimension::vl_size
     numOrientations::vl_size
@@ -1152,6 +1163,7 @@ struct VlHog_
     hogNorm::Ptr{Cfloat}
     hogWidth::vl_size
     hogHeight::vl_size
+    VlHog_() = new()
 end
 
 const VlHog = VlHog_
@@ -1841,9 +1853,10 @@ end
 
 const VlKDTreeThresholdingMethod = _VlKDTreeThresholdingMethod
 
-struct _VlKDForestNeighbor
+mutable struct _VlKDForestNeighbor
     distance::Cdouble
     index::vl_uindex
+    _VlKDForestNeighbor() = new()
 end
 
 const VlKDForestNeighbor = _VlKDForestNeighbor
@@ -2186,10 +2199,11 @@ end
 
 const VlLbpMappingType = _VlLbpMappingType
 
-struct VlLbp_
+mutable struct VlLbp_
     dimension::vl_size
     mapping::NTuple{256, vl_uint8}
     transposed::vl_bool
+    VlLbp_() = new()
 end
 
 const VlLbp = VlLbp_
@@ -2220,7 +2234,7 @@ function vl_lbp_get_dimension(self)
     return ccall((:vl_lbp_get_dimension, libvl), vl_size, (Ptr{VlLbp},), self)
 end
 
-struct _VlLiopDesc
+mutable struct _VlLiopDesc
     numNeighbours::vl_int
     numSpatialBins::vl_int
     intensityThreshold::Cfloat
@@ -2235,6 +2249,7 @@ struct _VlLiopDesc
     neighPermutation::Ptr{vl_uindex}
     neighSamplesX::Ptr{Cdouble}
     neighSamplesY::Ptr{Cdouble}
+    _VlLiopDesc() = new()
 end
 
 const VlLiopDesc = _VlLiopDesc
@@ -2724,7 +2739,7 @@ end
 
 const VlMserStats = _VlMserStats
 
-struct _VlMserFilt
+mutable struct _VlMserFilt
     ndims::Cint
     dims::Ptr{Cint}
     nel::Cint
@@ -2753,6 +2768,7 @@ struct _VlMserFilt
     max_variation::Cdouble
     min_diversity::Cdouble
     stats::VlMserStats
+    _VlMserFilt() = new()
 end
 
 const VlMserFilt = _VlMserFilt
@@ -2839,11 +2855,12 @@ end
 
 const vl_mser_acc = Cfloat
 
-struct _VlPgmImage
+mutable struct _VlPgmImage
     width::vl_size
     height::vl_size
     max_value::vl_size
     is_raw::vl_bool
+    _VlPgmImage() = new()
 end
 
 const VlPgmImage = _VlPgmImage
@@ -2902,7 +2919,7 @@ end
 
 const vl_qs_type = Cdouble
 
-struct _VlQS
+mutable struct _VlQS
     image::Ptr{vl_qs_type}
     height::Cint
     width::Cint
@@ -2913,6 +2930,7 @@ struct _VlQS
     parents::Ptr{Cint}
     dists::Ptr{vl_qs_type}
     density::Ptr{vl_qs_type}
+    _VlQS() = new()
 end
 
 const VlQS = _VlQS
@@ -3025,7 +3043,7 @@ function vl_irodrigues(om_pt, dom_pt, R_pt)
     return ccall((:vl_irodrigues, libvl), Cvoid, (Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cdouble}), om_pt, dom_pt, R_pt)
 end
 
-struct _VlScaleSpaceGeometry
+mutable struct _VlScaleSpaceGeometry
     width::vl_size
     height::vl_size
     firstOctave::vl_index
@@ -3035,6 +3053,7 @@ struct _VlScaleSpaceGeometry
     octaveLastSubdivision::vl_index
     baseScale::Cdouble
     nominalScale::Cdouble
+    _VlScaleSpaceGeometry() = new()
 end
 
 const VlScaleSpaceGeometry = _VlScaleSpaceGeometry
@@ -3043,10 +3062,11 @@ function vl_scalespacegeometry_is_equal(a, b)
     return ccall((:vl_scalespacegeometry_is_equal, libvl), vl_bool, (VlScaleSpaceGeometry, VlScaleSpaceGeometry), a, b)
 end
 
-struct _VlScaleSpaceOctaveGeometry
+mutable struct _VlScaleSpaceOctaveGeometry
     width::vl_size
     height::vl_size
     step::Cdouble
+    _VlScaleSpaceOctaveGeometry() = new()
 end
 
 const VlScaleSpaceOctaveGeometry = _VlScaleSpaceOctaveGeometry
@@ -3122,7 +3142,7 @@ end
 
 const VlSiftKeypoint = _VlSiftKeypoint
 
-struct _VlSiftFilt
+mutable struct _VlSiftFilt
     sigman::Cdouble
     sigma0::Cdouble
     sigmak::Cdouble
@@ -3153,6 +3173,7 @@ struct _VlSiftFilt
     windowSize::Cdouble
     grad::Ptr{vl_sift_pix}
     grad_o::Cint
+    _VlSiftFilt() = new()
 end
 
 const VlSiftFilt = _VlSiftFilt
@@ -3371,9 +3392,10 @@ function vl_string_casei_cmp(string1, string2)
     return ccall((:vl_string_casei_cmp, libvl), Cint, (Ptr{Cchar}, Ptr{Cchar}), string1, string2)
 end
 
-struct _VlEnumerator
+mutable struct _VlEnumerator
     name::Ptr{Cchar}
     value::vl_index
+    _VlEnumerator() = new()
 end
 
 const VlEnumerator = _VlEnumerator
@@ -3414,7 +3436,7 @@ end
     VlSvmStatusMaxNumIterationsReached = 3
 end
 
-struct VlSvmStatistics_
+mutable struct VlSvmStatistics_
     status::VlSvmSolverStatus
     iteration::vl_size
     epoch::vl_size
@@ -3426,6 +3448,7 @@ struct VlSvmStatistics_
     dualityGap::Cdouble
     scoresVariation::Cdouble
     elapsedTime::Cdouble
+    VlSvmStatistics_() = new()
 end
 
 const VlSvmStatistics = VlSvmStatistics_
