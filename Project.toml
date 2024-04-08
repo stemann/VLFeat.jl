@@ -10,7 +10,7 @@ FixedPointNumbers = "53c48c17-4a7d-5ca2-90c5-79b7896eea93"
 VLFeat_jll = "5dd52a3f-0bef-5ba1-8e18-ffde86b716e1"
 
 [compat]
-CEnum = "0.4"
+CEnum = "0.4, 0.5"
 ColorTypes = "0.10, 0.11"
 FixedPointNumbers = "0.6, 0.7, 0.8"
 VLFeat_jll = "0.9"
