@@ -1,7 +1,7 @@
 name = "VLFeat"
 uuid = "8e8fbaf7-7f59-4fc2-a79e-38659cf7ebfe"
 authors = ["IHP Systems R&D <research@ihp.dk>"]
-version = "0.2.0"
+version = "0.2.1"
 
 [deps]
 CEnum = "fa961155-64e5-5f13-b03f-caf6b980ea82"
